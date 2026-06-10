@@ -1,0 +1,42 @@
+name: DevOps CI/CD Container Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. Clone Codebase from Repository
+      uses: actions/checkout@v4
+
+    - name: 2. Initialize Python Runtime Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: 3. Install Project Dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        pip install -r requirements.txt --only-binary :all:
+
+    - name: 4. Execute Static Code Analysis (Syntax Check)
+      run: |
+        # Verifies the code compiles perfectly without launching the UI server
+        python -m py_compile app.py
+
+    - name: 5. Set Up Docker Buildx Engine
+      uses: docker/setup-buildx-action@v3
+
+    - name: 6. Compile Production Docker Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: false # Set to false for compilation testing; safe for public repos
+        tags: pricing-ab-simulator:latest
