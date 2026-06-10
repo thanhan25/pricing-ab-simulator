@@ -3,8 +3,7 @@
 An enterprise-grade analytical pipeline that evaluates how structural pricing changes impact conversion mechanics and gross margins, utilizing frequentist hypothesis testing to validate statistical significance.
 
 ## ??? Tech Stack & Architecture
-* **Core Language:** Python (\scipy.stats\, \statsmodels\, \pandas\, \
-umpy\)
+* **Core Language:** Python (`scipy.stats`, `statsmodels`, `pandas`, `numpy`)
 * **Interface & BI Visuals:** Streamlit, Plotly Canvas
 * **Infrastructure Layer:** Docker Containers
 * **Automation Pipeline:** GitHub Actions (CI/CD)
@@ -18,11 +17,10 @@ umpy\)
 ## ?? Quick-Start Docker Deployment
 Ensure your local Docker Desktop engine is active, then execute:
 
-\\\powershell
+```powershell
 # Build the production application layer
 docker build -t pricing-ab-simulator:v1.0 .
 
 # Run the container isolated on port 8501
 docker run -d -p 8501:8501 --name elastic-pricing-engine pricing-ab-simulator:v1.0
-\\\
-Once deployed, navigate to \http://localhost:8501\ to access the interactive analytics control room.
+Once deployed, navigate to http://localhost:8501 to access the interactive analytics control room.
