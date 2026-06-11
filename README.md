@@ -1,3 +1,4 @@
+
 # Algorithmic Pricing Engine & A/B Testing Simulator
 
 An enterprise-grade analytical pipeline that evaluates how structural pricing changes impact conversion mechanics and gross margins, utilizing frequentist hypothesis testing to validate statistical significance.
